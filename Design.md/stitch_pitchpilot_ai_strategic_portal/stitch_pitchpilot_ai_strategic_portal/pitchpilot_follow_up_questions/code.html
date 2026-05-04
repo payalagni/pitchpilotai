@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PitchPilot AI - Follow-up Questions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#003912",
+                    "on-secondary-fixed": "#00210b",
+                    "inverse-primary": "#006e2a",
+                    "on-background": "#dce5d7",
+                    "on-error": "#690005",
+                    "secondary": "#7dffa2",
+                    "surface-container-high": "#242c23",
+                    "on-secondary": "#003918",
+                    "on-primary-container": "#004c1b",
+                    "surface-bright": "#333b32",
+                    "tertiary-fixed-dim": "#ffb4ab",
+                    "on-tertiary-fixed": "#410002",
+                    "on-tertiary-fixed-variant": "#7e2a24",
+                    "surface-container": "#192219",
+                    "primary-fixed-dim": "#3ce36a",
+                    "error": "#ffb4ab",
+                    "surface-dim": "#0d150d",
+                    "secondary-fixed": "#62ff96",
+                    "tertiary-container": "#ff8d81",
+                    "primary-fixed": "#69ff87",
+                    "on-tertiary": "#601410",
+                    "primary": "#3fe56c",
+                    "outline-variant": "#3c4a3c",
+                    "on-primary-fixed-variant": "#00531e",
+                    "on-surface": "#dce5d7",
+                    "inverse-on-surface": "#2a3329",
+                    "surface": "#0d150d",
+                    "surface-container-lowest": "#081008",
+                    "secondary-fixed-dim": "#00e475",
+                    "background": "#0d150d",
+                    "surface-variant": "#2e372e",
+                    "on-tertiary-container": "#76251f",
+                    "tertiary-fixed": "#ffdad6",
+                    "on-secondary-container": "#00622e",
+                    "on-surface-variant": "#bbcbb8",
+                    "on-primary-fixed": "#002108",
+                    "on-secondary-fixed-variant": "#005226",
+                    "primary-container": "#00c853",
+                    "surface-tint": "#3ce36a",
+                    "error-container": "#93000a",
+                    "surface-container-low": "#151e15",
+                    "outline": "#869583",
+                    "on-error-container": "#ffdad6",
+                    "secondary-container": "#05e777",
+                    "inverse-surface": "#dce5d7",
+                    "tertiary": "#ffb7ae",
+                    "surface-container-highest": "#2e372e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "unit": "4px",
+                    "xs": "4px",
+                    "xl": "48px",
+                    "container-margin": "32px",
+                    "gutter": "20px"
+            },
+            "fontFamily": {
+                    "h1": ["Work Sans"],
+                    "label-caps": ["Work Sans"],
+                    "code": ["monospace"],
+                    "display": ["Work Sans"],
+                    "h2": ["Work Sans"],
+                    "body-md": ["Work Sans"],
+                    "body-lg": ["Work Sans"]
+            },
+            "fontSize": {
+                    "h1": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "code": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "h2": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ai-pulse {
+            position: relative;
+        }
+        .ai-pulse::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 8px;
+            height: 8px;
+            background-color: #00c853;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #00c853;
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-on-primary">
+<!-- TopAppBar Component -->
+<header class="bg-zinc-950/80 backdrop-blur-md font-['Work_Sans'] font-semibold tracking-tight border-b border-zinc-800 full-width top-0 z-50 shadow-none flex justify-between items-center w-full px-6 py-4 fixed">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-zinc-400 cursor-pointer hover:text-emerald-400 transition-colors" data-icon="menu">menu</span>
+<span class="text-xl font-bold text-emerald-500 uppercase tracking-wider">PitchPilot AI</span>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-8">
+<a class="text-emerald-500 hover:text-emerald-400 transition-colors text-sm uppercase tracking-widest font-bold" href="#">Intake</a>
+<a class="text-zinc-400 hover:text-emerald-400 transition-colors text-sm uppercase tracking-widest font-bold" href="#">History</a>
+<a class="text-zinc-400 hover:text-emerald-400 transition-colors text-sm uppercase tracking-widest font-bold" href="#">Settings</a>
+</nav>
+<div class="w-10 h-10 rounded-full border border-zinc-700 overflow-hidden">
+<img alt="Investor Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqOSwyuo3SKaumcB3LPWCgHbrY10jXg9rEnSEx8bMSwBE1CS_PxqPfT3anEWhOr5viLASXXPAYXlRQm1oibPvki-AwpFu2Q3V4PiZ2lF_TGC8-DbNlVu1BhyJuWyNStNmXkxqm8hXlEXcRyYNQRIuftWMQJc6horF_xrMzlFU5zrwF0hUrSnorwWahfaK1v1N1cRtcnskxZHbzcK_9xaC8P9zJIDAd0Um4YhEMGH_QBzX6JAlsoYAZnTmQFMjmj2e-qitBse4SAEQ"/>
+</div>
+</div>
+</header>
+<!-- NavigationDrawer Component -->
+<aside class="bg-zinc-900 font-['Work_Sans'] text-sm font-medium fixed left-0 top-0 h-full w-[240px] z-50 border-r border-zinc-800 shadow-[4px_0_24px_rgba(0,0,0,0.5)] hidden lg:flex flex-col py-8 space-y-2">
+<div class="px-6 mb-10">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-emerald-500 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-zinc-950 font-bold" data-icon="psychology">psychology</span>
+</div>
+<div>
+<h2 class="text-emerald-500 font-black text-sm uppercase tracking-tighter">PitchPilot AI</h2>
+<p class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest">Institutional Mode</p>
+</div>
+</div>
+</div>
+<nav class="flex flex-col flex-1">
+<a class="flex items-center gap-3 text-zinc-400 px-4 py-3 hover:bg-zinc-800 hover:text-zinc-100 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 bg-emerald-500/10 text-emerald-500 border-l-4 border-emerald-500 px-4 py-3 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="add_box">add_box</span>
+<span>New Deck</span>
+</a>
+<a class="flex items-center gap-3 text-zinc-400 px-4 py-3 hover:bg-zinc-800 hover:text-zinc-100 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>Audit</span>
+</a>
+<a class="flex items-center gap-3 text-zinc-400 px-4 py-3 hover:bg-zinc-800 hover:text-zinc-100 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span>Strategy</span>
+</a>
+</nav>
+<div class="mt-auto px-6 pt-4 border-t border-zinc-800">
+<p class="text-zinc-600 text-[10px] font-mono tracking-widest uppercase">v1.0.4</p>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:pl-[240px] pt-24 min-h-screen pb-20 px-6 md:px-12">
+<div class="max-w-5xl mx-auto">
+<!-- 4-Step Stepper Container -->
+<div class="mb-12 flex justify-between items-center bg-surface-container-low p-6 rounded-xl border border-zinc-800/50">
+<!-- Step 1: Upload (Complete) -->
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-500 flex items-center justify-center border border-emerald-500/50">
+<span class="material-symbols-outlined text-sm" data-icon="check">check</span>
+</div>
+<div class="flex flex-col">
+<span class="text-emerald-500/60 font-bold text-[10px] uppercase tracking-widest">Step 01</span>
+<span class="text-on-surface/60 font-semibold text-xs">Upload</span>
+</div>
+</div>
+<div class="h-[1px] flex-1 bg-emerald-500/20 mx-4"></div>
+<!-- Step 2: Questions (Active) -->
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-xs shadow-[0_0_12px_rgba(0,200,83,0.3)]">2</div>
+<div class="flex flex-col">
+<span class="text-emerald-500 font-bold text-[10px] uppercase tracking-widest">Step 02</span>
+<span class="text-on-surface font-semibold text-xs">Questions</span>
+</div>
+</div>
+<div class="h-[1px] flex-1 bg-zinc-800 mx-4"></div>
+<!-- Step 3: Analysis (Pending) -->
+<div class="flex items-center gap-3 opacity-40">
+<div class="w-8 h-8 rounded-full bg-zinc-800 text-zinc-400 flex items-center justify-center font-bold text-xs">3</div>
+<div class="flex flex-col">
+<span class="text-zinc-500 font-bold text-[10px] uppercase tracking-widest">Step 03</span>
+<span class="text-zinc-400 font-semibold text-xs">Analysis</span>
+</div>
+</div>
+<div class="h-[1px] flex-1 bg-zinc-800 mx-4"></div>
+<!-- Step 4: Delivery (Pending) -->
+<div class="flex items-center gap-3 opacity-40">
+<div class="w-8 h-8 rounded-full bg-zinc-800 text-zinc-400 flex items-center justify-center font-bold text-xs">4</div>
+<div class="flex flex-col">
+<span class="text-zinc-500 font-bold text-[10px] uppercase tracking-widest">Step 04</span>
+<span class="text-zinc-400 font-semibold text-xs">Delivery</span>
+</div>
+</div>
+</div>
+<!-- Follow-up Questions Content -->
+<div class="grid grid-cols-1 gap-lg">
+<div class="bg-surface-container-high border border-outline-variant rounded-xl p-lg transition-all duration-300">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-emerald-500" data-icon="auto_awesome">auto_awesome</span>
+<h2 class="font-h2 text-h2 text-on-surface">Follow-up Questions</h2>
+</div>
+<div class="ai-pulse"></div>
+</div>
+<div class="space-y-8">
+<!-- Q1 -->
+<div class="space-y-sm">
+<label class="block font-body-md text-on-surface font-semibold">1. In plain English, what does your company do and what is the big problem you are fixing for your customers?</label>
+<textarea class="w-full h-32 bg-zinc-950/80 border border-zinc-800 rounded-lg p-md text-on-surface placeholder:text-zinc-600 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all font-body-md" placeholder="Your response..."></textarea>
+</div>
+<!-- Q2 -->
+<div class="space-y-sm">
+<label class="block font-body-md text-on-surface font-semibold">2. Why is your way of doing it better than what exists now, and why is this the right time for your business to explode?</label>
+<textarea class="w-full h-32 bg-zinc-950/80 border border-zinc-800 rounded-lg p-md text-on-surface placeholder:text-zinc-600 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all font-body-md" placeholder="Your response..."></textarea>
+</div>
+<!-- Q3 -->
+<div class="space-y-sm">
+<label class="block font-body-md text-on-surface font-semibold">3. How do you make money, and do you have any numbers (like sales, users, or sign-ups) to prove people actually want this?</label>
+<textarea class="w-full h-32 bg-zinc-950/80 border border-zinc-800 rounded-lg p-md text-on-surface placeholder:text-zinc-600 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all font-body-md" placeholder="Your response..."></textarea>
+</div>
+<!-- Q4 -->
+<div class="space-y-sm">
+<label class="block font-body-md text-on-surface font-semibold">4. Who are the key people on your team, and how much money are you looking to raise right now?</label>
+<textarea class="w-full h-32 bg-zinc-950/80 border border-zinc-800 rounded-lg p-md text-on-surface placeholder:text-zinc-600 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all font-body-md" placeholder="Your response..."></textarea>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="flex flex-col sm:flex-row justify-end gap-md items-center py-6">
+<button class="w-full sm:w-auto px-8 py-3 rounded-lg text-zinc-400 font-semibold hover:text-on-surface transition-colors">Save as Draft</button>
+<button class="w-full sm:w-auto bg-primary-container hover:bg-secondary-container text-on-primary px-12 py-4 rounded-lg font-bold flex items-center justify-center gap-3 shadow-[0_4px_24px_rgba(0,200,83,0.3)] transition-all active:scale-95">
+                    Start AI Analysis
+                    <span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar for Mobile -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 rounded-t-2xl bg-zinc-950/90 backdrop-blur-lg border-t border-zinc-800 shadow-[0_-4px_12px_rgba(0,200,83,0.05)] flex justify-around items-center px-6 py-4 pb-safe">
+<div class="flex flex-col items-center justify-center text-zinc-600 scale-90">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Work_Sans'] text-[10px] uppercase font-bold mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-emerald-500 scale-110">
+<span class="material-symbols-outlined" data-icon="insights" style="font-variation-settings: 'FILL' 1;">insights</span>
+<span class="font-['Work_Sans'] text-[10px] uppercase font-bold mt-1">Intake</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-600 scale-90">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-['Work_Sans'] text-[10px] uppercase font-bold mt-1">History</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-600 scale-90">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Work_Sans'] text-[10px] uppercase font-bold mt-1">Profile</span>
+</div>
+</nav>
+<!-- Visual Polish: Content Overlay Grid -->
+<div class="fixed inset-0 pointer-events-none opacity-[0.03] z-[-1]" style="background-image: linear-gradient(#00c853 1px, transparent 1px), linear-gradient(90deg, #00c853 1px, transparent 1px); background-size: 40px 40px;"></div>
+</body></html>

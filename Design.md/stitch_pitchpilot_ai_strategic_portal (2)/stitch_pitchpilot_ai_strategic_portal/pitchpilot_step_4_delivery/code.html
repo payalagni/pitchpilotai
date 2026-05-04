@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PitchPilot AI - Delivery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3fe56c",
+                        "on-primary": "#003912",
+                        "primary-container": "#00c853",
+                        "on-primary-container": "#004c1b",
+                        "secondary": "#7dffa2",
+                        "on-secondary": "#003918",
+                        "secondary-container": "#05e777",
+                        "on-secondary-container": "#00622e",
+                        "tertiary": "#ffb7ae",
+                        "on-tertiary": "#601410",
+                        "tertiary-container": "#ff8d81",
+                        "on-tertiary-container": "#76251f",
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "on-error-container": "#ffdad6",
+                        "background": "#0d150d",
+                        "on-background": "#dce5d7",
+                        "surface": "#0d150d",
+                        "on-surface": "#dce5d7",
+                        "surface-variant": "#2e372e",
+                        "on-surface-variant": "#bbcbb8",
+                        "outline": "#869583",
+                        "outline-variant": "#3c4a3c",
+                        "surface-container-lowest": "#081008",
+                        "surface-container-low": "#151e15",
+                        "surface-container": "#192219",
+                        "surface-container-high": "#242c23",
+                        "surface-container-highest": "#2e372e",
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "xs": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "xl": "48px",
+                        "gutter": "20px",
+                        "container-margin": "32px",
+                        "unit": "4px",
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans", "sans-serif"],
+                        "body": ["Work Sans", "sans-serif"],
+                        "code": ["monospace"]
+                    },
+                    fontSize: {
+                        "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "h1": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "h2": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "code": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0d150d;
+            color: #dce5d7;
+            font-family: 'Work Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pulse-active {
+            box-shadow: 0 0 0 0 rgba(63, 229, 108, 0.4);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(63, 229, 108, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(63, 229, 108, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(63, 229, 108, 0); }
+        }
+        .glass-card {
+            background: rgba(25, 34, 25, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #3c4a3c;
+        }
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen selection:bg-primary selection:text-on-primary">
+<!-- Top Header (Mobile Only) -->
+<header class="fixed top-0 w-full z-40 border-b border-outline-variant bg-surface-container/80 backdrop-blur-xl flex items-center justify-between px-4 h-16 lg:hidden">
+<div class="flex items-center gap-3">
+<button aria-label="Menu" class="p-2 -ml-2 text-primary">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<span class="text-lg font-bold tracking-tight text-primary font-display">PitchPilot AI</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBipD7anL2kNWIQwH3_Z86RxDNjSUE8dTIhsRzf7Wb4G0q4wtUg9lp5cRb0Pv2PPlzKjLnaz2-kyTTSX04IiigC6DcDvpkVVV2iBhADkDUBZUtOul4M1opEFnwnQcerB3e6Pe3KesghDOqIyZJNEFwtUSF1KVcQfwELuBt8pDjXgV0PgjtgUWMBVczdL9CZxdsCkN8g3qnedyuj7yhg1BUe3Y2KNTLvOJEuGfGO5sdCAUQWVDlyG9bBLHrz9jzWEoZxSjhjNLonehc"/>
+</div>
+</header>
+<div class="flex flex-1">
+<!-- Side Navigation (Desktop Only) -->
+<aside class="hidden lg:flex flex-col w-[240px] border-r border-outline-variant bg-surface sticky top-0 h-screen overflow-y-auto">
+<div class="p-6">
+<h1 class="text-xl font-black tracking-tighter text-primary font-display">PitchPilot AI</h1>
+</div>
+<nav class="flex-1 px-3 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-primary bg-primary/10 rounded-lg border-r-4 border-primary font-semibold" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="font-medium">New Deck</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+<span class="font-medium">Audit</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="font-medium">Strategy</span>
+</a>
+</nav>
+<div class="p-4 border-t border-outline-variant">
+<div class="flex items-center gap-3 p-2">
+<div class="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="account_circle">account_circle</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-sm font-bold text-on-surface truncate">Investor Admin</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold">Institutional Pro</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-4 md:p-8 lg:p-12 mt-16 lg:mt-0 max-w-7xl mx-auto w-full">
+<!-- Progress Indicator -->
+<div class="mb-12">
+<div class="flex items-center justify-between mb-4">
+<span class="text-label-caps text-on-surface-variant uppercase">Step 4 of 4</span>
+<span class="text-label-caps text-primary font-bold">Delivery Phase</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden flex gap-1">
+<div class="h-full bg-primary flex-1"></div>
+<div class="h-full bg-primary flex-1"></div>
+<div class="h-full bg-primary flex-1"></div>
+<div class="h-full bg-primary flex-1 relative">
+<div class="absolute inset-0 shadow-[0_0_12px_rgba(63,229,108,0.6)]"></div>
+</div>
+</div>
+</div>
+<!-- Success Hero -->
+<div class="text-center mb-12">
+<div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 border border-primary/20 mb-6 pulse-active">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h2 class="font-display text-h1 text-on-surface mb-3">Analysis Complete</h2>
+<p class="text-body-md text-on-surface-variant max-w-2xl mx-auto">Your institutional-grade pitch deck has been synthesized using the Farmeal-Standard methodology. Ready for investor circulation.</p>
+</div>
+<!-- Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+<!-- Left: Deck Preview -->
+<div class="lg:col-span-7">
+<div class="glass-card rounded-xl overflow-hidden shadow-2xl relative group border-primary/20 transition-all duration-300">
+<div class="absolute top-4 right-4 z-10">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-highest/90 backdrop-blur-md border border-primary/30 text-[10px] font-bold text-primary uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                            Investor Ready
+                        </span>
+</div>
+<div class="aspect-video bg-surface-container-lowest flex items-center justify-center overflow-hidden">
+<img alt="Farmeal-Standard Deck Preview" class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJK1PyAjkAkbg-zjTkgThTniGV9C011NBIqGDyFGjkUeSjtpLHS2KdivJ3YBUbogcaVma_jYrcSdnmyC-5avVVS6ZjmX9Xtle3KT6IM6EvoMem_CeroBZeoBLj_gagAHTUg00C6nBezwjrW97_eVVu-DQJKweDuPemiE3g1xXPqWr7R1TinJ2BNUvVlPEHl1EbKIA_wgt934Q5Q9kXCcyP987j-79nn8QoRLyeJKa0XdHzPEunHkPMWqi-1xMBOh7T4MOazoHJCGE"/>
+</div>
+<div class="p-6 bg-surface-container border-t border-outline-variant flex items-center justify-between">
+<div>
+<h3 class="font-bold text-on-surface text-body-lg">Farmeal-Standard Deck</h3>
+<p class="text-xs text-on-surface-variant mt-1">v1.0 • Generated 2m ago</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest transition-colors border border-outline-variant text-on-surface-variant hover:text-primary" title="Fullscreen">
+<span class="material-symbols-outlined text-xl" data-icon="fullscreen">fullscreen</span>
+</button>
+<button class="p-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest transition-colors border border-outline-variant text-on-surface-variant hover:text-primary" title="Share">
+<span class="material-symbols-outlined text-xl" data-icon="share">share</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Actions & Stats -->
+<div class="lg:col-span-5 space-y-6">
+<!-- Export Section -->
+<section class="glass-card rounded-xl p-6 border-outline-variant">
+<h4 class="text-label-caps text-on-surface-variant mb-4 uppercase">Export Options</h4>
+<div class="space-y-3">
+<button class="w-full py-4 bg-primary text-on-primary font-bold rounded-xl flex items-center justify-center gap-3 hover:shadow-[0_0_24px_rgba(63,229,108,0.3)] transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                            Download PPTX
+                        </button>
+<button class="w-full py-4 bg-transparent border border-outline-variant text-on-surface font-bold rounded-xl flex items-center justify-center gap-3 hover:bg-surface-container-high transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined" data-icon="picture_as_pdf">picture_as_pdf</span>
+                            Export to PDF
+                        </button>
+</div>
+</section>
+<!-- Methodology Section -->
+<section class="glass-card rounded-xl p-6 border-outline-variant">
+<div class="flex items-center justify-between mb-5">
+<h4 class="text-label-caps text-on-surface-variant uppercase">Methodology Summary</h4>
+<span class="px-2 py-0.5 rounded bg-primary/10 text-[10px] text-primary font-bold tracking-widest border border-primary/20">10 SLIDES</span>
+</div>
+<ul class="space-y-4">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-0.5" data-icon="task_alt" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-on-surface">Value Theory</span>
+<span class="text-xs text-on-surface-variant leading-relaxed">Core economic thesis and market wedge.</span>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-0.5" data-icon="task_alt" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-on-surface">The Moat</span>
+<span class="text-xs text-on-surface-variant leading-relaxed">Defensibility analysis and IP protection.</span>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-0.5" data-icon="task_alt" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-on-surface">Founder Narrative</span>
+<span class="text-xs text-on-surface-variant leading-relaxed">Team alignment and execution history.</span>
+</div>
+</li>
+<li class="flex items-center gap-4 pt-2 border-t border-outline-variant/30">
+<span class="material-symbols-outlined text-on-surface-variant/40" data-icon="more_horiz">more_horiz</span>
+<span class="text-sm font-medium text-on-surface-variant italic">7 Additional Strategic Slides...</span>
+</li>
+</ul>
+</section>
+</div>
+</div>
+<!-- AI Insights Banner -->
+<div class="bg-primary-container/10 border border-primary/20 rounded-xl p-6 flex flex-col md:flex-row items-center gap-6 mb-12">
+<div class="flex-shrink-0 w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="lightbulb">lightbulb</span>
+</div>
+<div class="flex-1 text-center md:text-left">
+<h5 class="font-bold text-primary mb-1">Pro Tip: Strategic Analysis</h5>
+<p class="text-sm text-on-surface-variant">Our AI suggests leading with 'The Moat' slide if pitching to Tier-1 VC firms in the current market climate.</p>
+</div>
+<button class="whitespace-nowrap px-6 py-2.5 bg-surface-container-high border border-outline-variant rounded-lg text-sm font-bold text-on-surface hover:bg-surface-container-highest hover:border-primary/50 transition-all">
+                View AI Insights
+            </button>
+</div>
+</main>
+</div>
+<!-- Mobile Tab Bar -->
+<nav class="lg:hidden flex justify-around items-center h-16 pb-safe w-full fixed bottom-0 z-50 bg-surface-container/95 backdrop-blur-md border-t border-outline-variant rounded-t-xl shadow-[0_-4px_24px_rgba(0,0,0,0.6)]">
+<a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[10px] uppercase font-bold mt-1 tracking-tighter">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-primary relative" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="text-[10px] uppercase font-bold mt-1 tracking-tighter">Intake</span>
+<span class="absolute -bottom-1 w-1 h-1 bg-primary rounded-full"></span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="text-[10px] uppercase font-bold mt-1 tracking-tighter">History</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] uppercase font-bold mt-1 tracking-tighter">Profile</span>
+</a>
+</nav>
+<!-- Footer Spacer for Mobile -->
+<div class="h-20 lg:hidden"></div>
+</body></html>
