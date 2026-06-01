@@ -1,9 +1,8 @@
 ﻿{
   "version": 3,
   "rootDirectory": "pitchpilot-mvp/frontend",
-  "buildCommand": "npm run build",
-  "devCommand": "npm run dev",
-  "installCommand": "npm install",
-  "framework": "nextjs",
+  "installCommand": "cd pitchpilot-mvp/frontend && npm install",
+  "buildCommand": "cd pitchpilot-mvp/frontend && npm run build",
+  "devCommand": "cd pitchpilot-mvp/frontend && npm run dev",
   "outputDirectory": ".next"
 }
