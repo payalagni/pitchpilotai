@@ -1,0 +1,10 @@
+# Ignore old/untracked root frontend folder
+/frontend/
+
+# Ignore local Node modules and logs at repository root
+/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.DS_Store
