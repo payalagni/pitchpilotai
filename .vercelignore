@@ -1,0 +1,13 @@
+# Ignore root Python backend and legacy frontend artifacts
+main.py
+*.py
+pitchpilot-mvp/backend/
+frontend/
+AI Pitch Deck Files/
+Design.md/
+__pycache__/
+.env
+.env.*
+node_modules/
+package-lock.json
+next-env.d.ts
