@@ -1,8 +1,9 @@
 ﻿{
-  "version": 3,
-  "rootDirectory": "pitchpilot-mvp/frontend",
-  "installCommand": "cd pitchpilot-mvp/frontend && npm install",
-  "buildCommand": "cd pitchpilot-mvp/frontend && npm run build",
-  "devCommand": "cd pitchpilot-mvp/frontend && npm run dev",
-  "outputDirectory": ".next"
+  "version": 2,
+  "builds": [
+    {
+      "src": "pitchpilot-mvp/frontend/package.json",
+      "use": "@vercel/next"
+    }
+  ]
 }
