@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "pitchpilot-mvp/frontend/package.json",
+      "use": "@vercel/next"
+    }
+  ]
+}
